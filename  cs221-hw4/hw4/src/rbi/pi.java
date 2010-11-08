@@ -1,4 +1,4 @@
-//HW4: Computing Pi using Continued Fraction
+// HW4: Computing Pi using Continued Fraction
 // Team Number: 11
 // Students: Guangjian Li, Avi Burstein, Seyed Emadi
 
