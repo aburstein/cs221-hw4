@@ -37,19 +37,18 @@ public class pi extends TestCase {
         	int D = 0;
         	while( (Math.log(2*D + 3) + (D + 1)*Math.log(Xsqr)) <= digits*Math.log(10) )
         		D++;
-        	//  M is the degree of the Taylor polynomial needed to achieve N
+        	//  D is the degree of the Taylor polynomial needed to achieve N
         	//  digit accuracy of arctan(1/k).
         	BigInteger tenToN = new BigInteger("1");
-        	
         	//  The following loop computes 10^N
         	for( i = 0; i < digits; i++ )
         		tenToN = tenToN.multiply(BigInteger.valueOf(10));
         	int k = 2*D + 1;
-        	BigInteger sum = tenToN.divide(BigInteger.valueOf(k)); // sum = (10^N)/c
+        	BigInteger sum = tenToN.divide(BigInteger.valueOf(k)); // sum = (10^N)/k
         	for( i = 0; i < D; i++ ) {
         		k = k - 2;
         		sum = (tenToN.divide(BigInteger.valueOf(k))).
-        		subtract(sum.divide(BigInteger.valueOf(Xsqr)));   //  sum = (10^N)/c - s/a
+        		subtract(sum.divide(BigInteger.valueOf(Xsqr)));   // sum = (10^N)/k - s/Xsqr
         	} 
         	// return sum/x, which is integer part of 10^N times arctan(1/x)
         	return sum.divide(BigInteger.valueOf(x));
@@ -60,6 +59,6 @@ public class pi extends TestCase {
         	BigInteger pi = new BigInteger("1");  // compiler requires initial
         	pi = (arcTan(5,digits+10).multiply(BigInteger.valueOf(16))).subtract
         	(arcTan(239,digits+10).multiply(BigInteger.valueOf(4)));
-        	return pi;  // drop last 8 digits
-        } // piDigits
+        	return pi;
+        } 
 }
